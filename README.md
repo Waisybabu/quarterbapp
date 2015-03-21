@@ -24,3 +24,7 @@ It is currently targeted at NFL, but can be tweaked to support NBA, MLB, and NHL
 * Quarterbapp pulls news, and score updates of your favorite team plus relevant teams.
 
 The relevancy calculation algorithm updates relevant teams on a regular basis.
+
+### Project Status
+
+Work-in-progress. 
