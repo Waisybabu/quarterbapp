@@ -1,0 +1,22 @@
+/* Empty. Add your own CSS if you like */
+.list{
+	padding-bottom:3em;
+}
+
+.textCenterAlign{
+	text-align: center;
+}
+
+.imgCenterAlign{
+	display:block;
+	margin:0 auto;
+
+}
+
+.divCenterAlign{
+	margin: 0 auto;
+}
+
+.fullWidth{
+	max-width: 80%;
+}

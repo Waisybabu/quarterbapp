@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/font.css" rel="stylesheet">
+    <link href="css/color.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,900,100' rel='stylesheet' type='text/css'>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="quarterbapp" ng-controller="HomeCtrl">
+
+    <ion-tabs class="tabs-dark tabs-icon-only">
+
+      <ion-tab title="Home" icon-on="ion-home" icon-off="ion-home">
+        <ion-header-bar class="bar-positive">
+        <h1 class="title">Home</h1>
+        </ion-header-bar>
+        <ion-view><ion-content>
+        <br>
+        <div class="blockCenterAlign">
+          <img class="fullWidth imgCenterAlign" ng-src="img/welcomeTo.PNG">
+          <img class="animated fadeIn fullWidth imgCenterAlign" ng-src="img/QuarterBapp.PNG">
+        </div><br>
+        <!-- show this after 3 seconds -->
+        <p class="textCenterAlign">Select your favorite team!</p>
+        <div ng-repeat="team in teamSelectionList" ng-click="getRelevantTeamsJSON('{{team.name}}')" class="row">
+          <div class="col col-10"><img src="{{team.logo}}" style="max-width:36px;max-height:30px"></div>
+          <div class="col col-90">&nbsp;&nbsp;&nbsp;{{team.name}}</div>
+        </div>
+
+
+
+        </ion-content></ion-view>
+      </ion-tab>
+
+      <ion-tab title="Teams" icon-on="ion-trophy" icon-off="ion-trophy">
+          <ion-header-bar class="bar-positive">
+            <h1 class="title">Standings</h1>
+          </ion-header-bar>
+          <ion-tabs class="tabs-dark tabs-icon-only tabs-top has-tab">
+          <ion-tab title="AFC">
+            <ion-view>
+            <ion-content>
+            <div class="list">
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>AFC East</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in afcEastStandingsArray" class="row animated fadeInLeft">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>AFC North</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in afcNorthStandingsArray" class="row animated fadeInRight">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>AFC South</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in afcSouthStandingsArray" class="row animated fadeInUp">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50 "><strong>AFC West</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in afcWestStandingsArray" class="row" id="lastRow">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+            </div>
+            </ion-content></ion-view>
+          </ion-tab>
+        
+          <ion-tab title="NFC">
+          <ion-view><ion-content>
+            <div class="list">
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>NFC East</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in nfcEastStandingsArray" class="row animated fadeInLeft">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>NFC North</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in nfcNorthStandingsArray" class="row animated fadeInRight">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>NFC South</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in nfcSouthStandingsArray" class="row animated fadeInUp">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+              <div class="item item-divider">
+                <div class="row nflBlueTextColor">
+                  <div class="col col-50"><strong>NFC West</strong></div>
+                  <div class="col"><strong>W</strong></div>
+                  <div class="col"><strong>L</strong></div>
+                  <div class="col"><strong>T</strong></div>
+                  <div class="col"><strong>Pct</strong></div>
+                </div>
+              </div>
+              <div ng-repeat="team in nfcWestStandingsArray" class="row" id="lastRow">
+                <div class="col col-50">{{team.Teams.Team_Name}}</div>
+                <div class="col">{{team.Teams.Win}}</div>
+                <div class="col">{{team.Teams.Lose}}</div>
+                <div class="col">{{team.Teams.Tie}}</div>
+                <div class="col">{{team.Teams.Pct}}</div>
+              </div>
+            </div>
+            </ion-content></ion-view>
+          </ion-tab>
+
+
+        </ion-tabs>
+
+
+
+
+      </ion-tab>
+
+      <ion-tab title="More" icon-on="ion-navicon" icon-off="ion-navicon">
+        <ion-header-bar class="bar-positive">
+        <h1 class="title">More</h1>
+        </ion-header-bar>
+        <ion-view><ion-content>
+        <h2 class="textCenterAlign">Relevant Teams</h2>
+        <div ng-repeat="team in relevantTeams" class="row">
+          <div class="col col-10"><img src="img/{{team.name}}.svg" style="max-width:36px;max-height:30px"></div>
+          <div class="col col-70">&nbsp;&nbsp;&nbsp;{{team.name}}</div>
+          <div class="col col-20">{{team.relevancy}}</div>
+        </div>
+
+        </ion-content></ion-view>
+      </ion-tab>
+
+    </ion-tabs>
+
+  </body>
+</html>

@@ -1,0 +1,23 @@
+/*.bar-assertive, .tabs-nav{
+	background-color: #DA2127 !important;
+}*/
+
+.nflBlueTextColor{
+	color: #003A73; /*NFL blue*/
+}
+
+.nflRedTextColor{
+	color: #DA2127; /*NFL blue*/
+}
+
+.bar-assertive{
+	background-color: #DA2127; /*NFL red*/
+}
+
+.bar-positive{
+	background-color: #003A73 !important; /*NFL blue*/
+}
+
+.tabs, .tabs-nav{
+	background-color: #003A73 !important; /*NFL blue*/
+}
