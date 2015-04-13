@@ -2,13 +2,8 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 
-@font-face{
-	font-family: 'Freshman', sans-serif;
-}
-
 h1, h2{
-	/*font-weight: 900 !important;*/
-	font-family: 'Freshman';
+	font-weight: 900 !important;
 }
 
 

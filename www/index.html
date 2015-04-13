@@ -41,9 +41,13 @@
         </div><br>
         <!-- show this after 3 seconds -->
         <p class="textCenterAlign">Select your favorite team!</p>
-        <div ng-repeat="team in teamSelectionList" ng-click="getRelevantTeamsJSON('{{team.name}}')" class="row">
-          <div class="col col-10"><img src="{{team.logo}}" style="max-width:36px;max-height:30px"></div>
-          <div class="col col-90">&nbsp;&nbsp;&nbsp;{{team.name}}</div>
+        <div id="allTeams" ng-hide="teamSelected">
+          <div ng-repeat="team in teamSelectionList" ng-click="getRelevantTeamsJSON('{{team.name}}');setTeamSelectedValue(true)" class="row">
+
+            <div class="col col-10"><img src="{{team.logo}}" style="max-width:36px;max-height:30px"></div>
+            <div class="col col-90">&nbsp;&nbsp;&nbsp;{{team.name}}</div>
+
+          </div>
         </div>
 
 

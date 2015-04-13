@@ -31,6 +31,10 @@ angular.module('quarterbapp', ['ionic'])
 
 .controller('HomeCtrl', function($scope, $http){
 
+    $scope.teamSelected = false;
+
+    console.log('teamSelected', $scope.teamSelected);
+
     $scope.teamSelectionList = [
       {name:'Arizona Cardinals', logo:"img/Arizona Cardinals.svg"},
       {name:'Atlanta Falcons', logo:"img/Atlanta Falcons.svg"},
@@ -70,9 +74,19 @@ angular.module('quarterbapp', ['ionic'])
 
     ];
 
+    $scope.getTeamSelectedValue = function(){
+      console.log('teamSelected', $scope.teamSelected);
+    };
+
+    $scope.setTeamSelectedValue = function(value){
+      $scope.teamSelected = value;
+      console.log('setTeamSelectedValue', $scope.teamSelected);
+
+    };
+
     $scope.getRelevantTeamsJSON = function(teamName){
       $http.get('http://akifhazarvi.base.pk/relevancy.php?team=' + teamName).then(function(data){
-        console.log('Relevancy Test for ' + teamName, data);
+        console.log('Relevancy for ' + teamName, data);
 
         $scope.relevantTeams = [];
         $scope.relevantTeamsArray = data.data.RelevantTeams;
@@ -87,7 +101,7 @@ angular.module('quarterbapp', ['ionic'])
               relevancy: $scope.relevantTeamsArray[i].Team.Relevancy_Type
             });
         }        
-        console.log('RelevantTeamsAfterFor', $scope.relevantTeams);
+        console.log('RelevantTeamsAfterForLoop', $scope.relevantTeams);
 
         //
       }, function(err){
@@ -109,6 +123,8 @@ angular.module('quarterbapp', ['ionic'])
       $scope.afcNorthStandingsArray = $scope.afcStandingsArray.slice(4,8);
       $scope.afcSouthStandingsArray = $scope.afcStandingsArray.slice(8,12);
       $scope.afcWestStandingsArray = $scope.afcStandingsArray.slice(12,16);
+
+      console.log('afcStandings', $scope.afcStandingsArray);
 
     }, function(err){
       console.error('ERR, err');
