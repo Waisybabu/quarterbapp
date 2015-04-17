@@ -23,10 +23,41 @@ angular.module('quarterbapp', ['ionic'])
 
 })
 
-.config(function($ionicConfigProvider){
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider){
   $ionicConfigProvider.tabs.style('ios');
   $ionicConfigProvider.tabs.position('ios');
   $ionicConfigProvider.navBar.alignTitle('ios');
+
+  $stateProvider
+    .state('tabs', {
+      url:'/tab',
+      templateUrl: 'templates/tabs.html'
+    })
+    .state('tabs.home',{
+      url: "/home",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/home.html"
+        }
+      }
+    })
+    .state('tabs.standings',{
+      url:"/standings",
+      views: {
+        'standings-tab':{
+          templateUrl: "templates/standings.html"
+        }
+      }
+    })
+    .state('tabs.more',{
+      url:"/more",
+      views: {
+        'more-tab':{
+          templateUrl: "templates/more.html"
+        }
+      }
+    })
+    $urlRouterProvider.otherwise("/tab/home");
 })
 
 .controller('HomeCtrl', function($scope, $http){
@@ -76,12 +107,6 @@ angular.module('quarterbapp', ['ionic'])
 
     $scope.getTeamSelectedValue = function(){
       console.log('teamSelected', $scope.teamSelected);
-    };
-
-    $scope.setTeamSelectedValue = function(value){
-      $scope.teamSelected = value;
-      console.log('setTeamSelectedValue', $scope.teamSelected);
-
     };
 
     $scope.getRelevantTeamsJSON = function(teamName){
